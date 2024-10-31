@@ -10,11 +10,9 @@ import soundfile as sf  # Part 3
 import matplotlib.pyplot as plt  # Part 4 & 5
 
 # Gloabl variable if a print is needed
-PRINT = True
+PRINT = False
 
-def text_to_sound(text = "hello", duration=0.1, base_frequency = 1000, sample_rate = 44100, filename="signal.wav", print=True):
-    PRINT = print
-
+def text_to_sound(text = "hello", duration=0.1, base_frequency = 1000, sample_rate = 44100, filename="signal.wav"):
     segments = generate_signal_segments(
         text,
         sample_rate=sample_rate,
@@ -130,6 +128,7 @@ def plot_frequency_domain_segments(segments, sample_rate=44100, base_freq=100):
 
 
 if __name__ == "__main__":
+    PRINT = True
     text = input("Enter the text to be converted to signal (default: hello): ")
 
     if text == "":
