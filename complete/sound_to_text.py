@@ -10,6 +10,7 @@ import soundfile as sf
 PRINT = False
 
 def waw_to_text(duration_input=0.1, base_frequency = 1000, threshold = 0.5, filename="./signal.wav"):
+    #IMPORTANT: The threshold value is no longer in use, so no change if it is set to a value
     # Load signal from the .wav file
     signal, sample_rate = load_signal_from_file(filename)
 
@@ -70,6 +71,11 @@ def analyze_and_decode_segments_with_fft(
             fft_result[: N // 2]
         )  # Take magnitude of FFT result
 
+        # Calculate the threshold as the midpoint between max and min magnitude
+        max_magnitude = np.max(positive_fft_results)
+        min_magnitude = np.min(positive_fft_results)
+        dynamic_threshold = (max_magnitude + min_magnitude) / 2
+        
         # Decode each frequency to determine the bits for this character
         byte = ""
         for i in range(8):
@@ -83,7 +89,7 @@ def analyze_and_decode_segments_with_fft(
             #     f"Magnitude {magnitude:.2f}"
             # )
 
-            if magnitude > threshold:
+            if magnitude > dynamic_threshold:
                 byte += "1"
             else:
                 byte += "0"
