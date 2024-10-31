@@ -6,20 +6,17 @@
 import numpy as np
 import soundfile as sf
 
-
-def main():
+def waw_to_text(duration_input=0.1, base_frequency = 1000, threshold = 0.5, filename="signal.wav"):
     # Load signal from the .wav file
-    signal, sample_rate = load_signal_from_file("signal.wav")
+    signal, sample_rate = load_signal_from_file(filename)
 
     # Segment the signal into parts corresdponding to each character
     duration = (
-        0.005  # Duration of each character in seconds (must match encoding duration)
+        duration_input  # Duration of each character in seconds (must match encoding duration)
     )
     segments = segment_signal(signal, sample_rate, duration)
 
     # Decode the segments
-    base_frequency = 1000
-    threshold = 0.5
     binary_message = analyze_and_decode_segments_with_fft(
         segments,
         sample_rate=sample_rate,
@@ -104,4 +101,24 @@ def binary_to_ascii(binary_message):
 
 
 if __name__ == "__main__":
-    main()
+    duration_input = input("Enter the duration of each character in seconds (defualt: 0.1): ")
+    
+    if duration_input == "":
+        duration_input = "0.1"
+
+    base_frequency = input("Enter the base frequency (default: 1000): ")
+
+    if base_frequency == "":
+        base_frequency = "1000"
+
+    threshold = input("Enter the threshold (default: 0.5): ")
+
+    if threshold == "":
+        threshold = "0.5"
+
+    filename = input("Enter the filename (default: signal.wav): ")
+
+    if filename == "":
+        filename = "signal.wav"
+    
+    waw_to_text(float(duration_input), int(base_frequency), float(threshold), filename)

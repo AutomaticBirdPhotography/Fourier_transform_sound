@@ -3,7 +3,8 @@ import numpy as np
 from scipy.signal import stft, get_window
 from scipy.io import wavfile
 
-samplerate, data = wavfile.read('scale.wav')
+filename = input("Enter the file path for the .wav: ")
+samplerate, data = wavfile.read(filename)
 print(f"samplerate = {samplerate}Hz")
 
 # Number of samples 
@@ -21,7 +22,7 @@ signal = data.astype(float)
 signal /= np.max(np.abs(signal))
 
 # STFT parameters
-window_length = 7000 # Number of samples in each window
+window_length = 1024 # Number of samples in each window
 hop_size = window_length // 4 # 75% overlap
 noverlap = window_length - hop_size # Number of samples overlapping between windows
 
@@ -47,6 +48,7 @@ plt.text(0.05, 0.95, f'Window length: {window_length} samples', transform=plt.gc
 plt.ylabel('Frequency [Hz]')
 plt.xlabel('Time [sec]')
 plt.colorbar(label='Magnitude [dB]')
-plt.ylim(0, 8000)  # Limit the frequency range for better visualization
+plt.ylim(0, 9000)  # Limit the frequency range for better visualization
 plt.tight_layout()
+plt.grid()
 plt.show()

@@ -10,13 +10,7 @@ import soundfile as sf  # Part 3
 import matplotlib.pyplot as plt  # Part 4 & 5
 
 
-def main():
-    # Original message
-    text = "Hello, who are you?"
-    sample_rate = 44100
-    base_frequency = 1000
-    duration = 0.005
-
+def text_to_sound(text = "hello", duration=0.1, base_frequency = 1000, sample_rate = 44100, filename="signal.wav"):
     segments = generate_signal_segments(
         text,
         sample_rate=sample_rate,
@@ -25,7 +19,7 @@ def main():
     )
 
     # Save the full signal to a .wav file
-    save_signal_to_file(segments, "signal.wav", sample_rate=44100)
+    save_signal_to_file(segments, filename, sample_rate=44100)
 
     # # Plot time-domain signal
     # plot_time_domain_signal(segments)
@@ -132,4 +126,34 @@ def plot_frequency_domain_segments(segments, sample_rate=44100, base_freq=100):
 
 
 if __name__ == "__main__":
-    main()
+    text = input("Enter the text to be converted to signal (default: hello): ")
+
+    if text == "":
+        text = "hello"
+
+    duration_input = input("Enter the duration of each character in seconds (defualt: 0.1): ")
+    
+    if duration_input == "":
+        duration_input = "0.1"
+
+    base_frequency = input("Enter the base frequency (default: 1000): ")
+
+    if base_frequency == "":
+        base_frequency = "1000"
+
+    bitrate = input("Enter the bitrate (default: 44100): ")
+
+    if bitrate == "":
+        bitrate = "44100"
+
+    threshold = input("Enter the threshold (default: 0.5): ")
+
+    if threshold == "":
+        threshold = "0.5"
+
+    filename = input("Enter the filename (default: signal.wav): ")
+
+    if filename == "":
+        filename = "signal.wav"
+
+    text_to_sound(text, float(duration_input), int(base_frequency), int(bitrate), filename)
