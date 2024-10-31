@@ -9,6 +9,8 @@ import numpy as np  # Part 2
 import soundfile as sf  # Part 3
 import matplotlib.pyplot as plt  # Part 4 & 5
 
+# Gloabl variable if a print is needed
+PRINT = False
 
 def text_to_sound(text = "hello", duration=0.1, base_frequency = 1000, sample_rate = 44100, filename="signal.wav"):
     segments = generate_signal_segments(
@@ -79,8 +81,8 @@ def save_signal_to_file(segments, filename="signal.wav", sample_rate=44100):
     full_signal /= np.max(np.abs(full_signal) + 1e-6)
     # Write full signal to a .wav file
     sf.write(filename, full_signal, sample_rate)
-
-    print(f"Signal generated and saved in the file: '{filename}'")
+    if PRINT:
+        print(f"Signal generated and saved in the file: '{filename}'")
 
 
 # Part 6: Plot the Time-Domain Signal
@@ -126,10 +128,32 @@ def plot_frequency_domain_segments(segments, sample_rate=44100, base_freq=100):
 
 
 if __name__ == "__main__":
+    PRINT = True
     text = input("Enter the text to be converted to signal (default: hello): ")
 
     if text == "":
         text = "hello"
+
+    text = """
+        Sonett 18
+        Skal jeg si du er lik en sommerdag?
+        Du har mer ynde og mer harmoni.
+        Hver maiknopp skakes bryskt av vindens jag,
+        og sommerens lånte tid er fort forbi.
+
+        For het iblant er himmeløyets glød,
+        og ofte blir dets gylne glans obskur.
+        Alt skjønt går fra det skjønne og mot død,
+        på grunn av skjebne eller streng natur.
+
+        Men alltid skal din sommer finnes her,
+        din skjønnhet skal bestå, du skal forbli,
+        og ikke gå hvor dødens skygge er:
+
+        Av diktet, evig, oppstår du i tid.
+        ___Så lenge menn kan ånde, øyne se,
+        ___har diktet liv. Og du får liv ved det.
+    """
 
     duration_input = input("Enter the duration of each character in seconds (defualt: 0.1): ")
     

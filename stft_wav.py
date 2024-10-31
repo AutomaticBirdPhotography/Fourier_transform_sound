@@ -48,7 +48,8 @@ plt.text(0.05, 0.95, f'Window length: {window_length} samples', transform=plt.gc
 plt.ylabel('Frequency [Hz]')
 plt.xlabel('Time [sec]')
 plt.colorbar(label='Magnitude [dB]')
-plt.ylim(0, 9000)  # Limit the frequency range for better visualization
+max_freq = int(input("base: "))*9
+plt.ylim(0, max_freq)  # Limit the frequency range for better visualization
 plt.tight_layout()
 plt.grid()
 plt.show()
