@@ -6,7 +6,12 @@
 import numpy as np
 import soundfile as sf
 
-def waw_to_text(duration_input=0.1, base_frequency = 1000, threshold = 0.5, filename="signal.wav"):
+# Gloabl variable if a print is needed
+PRINT = True
+
+def waw_to_text(duration_input=0.1, base_frequency = 1000, threshold = 0.5, filename="signal.wav", print=True):
+    PRINT = print
+
     # Load signal from the .wav file
     signal, sample_rate = load_signal_from_file(filename)
 
@@ -25,7 +30,10 @@ def waw_to_text(duration_input=0.1, base_frequency = 1000, threshold = 0.5, file
     )
     decoded_text = binary_to_ascii(binary_message)
 
-    print(f"Decoded message: {decoded_text}")
+    if PRINT:
+        print(f"Decoded message: {decoded_text}")
+
+    return decoded_text
 
 
 def load_signal_from_file(filename="signal.wav"):

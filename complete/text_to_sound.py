@@ -9,8 +9,12 @@ import numpy as np  # Part 2
 import soundfile as sf  # Part 3
 import matplotlib.pyplot as plt  # Part 4 & 5
 
+# Gloabl variable if a print is needed
+PRINT = True
 
-def text_to_sound(text = "hello", duration=0.1, base_frequency = 1000, sample_rate = 44100, filename="signal.wav"):
+def text_to_sound(text = "hello", duration=0.1, base_frequency = 1000, sample_rate = 44100, filename="signal.wav", print=True):
+    PRINT = print
+
     segments = generate_signal_segments(
         text,
         sample_rate=sample_rate,
@@ -79,8 +83,8 @@ def save_signal_to_file(segments, filename="signal.wav", sample_rate=44100):
     full_signal /= np.max(np.abs(full_signal) + 1e-6)
     # Write full signal to a .wav file
     sf.write(filename, full_signal, sample_rate)
-
-    print(f"Signal generated and saved in the file: '{filename}'")
+    if PRINT:
+        print(f"Signal generated and saved in the file: '{filename}'")
 
 
 # Part 6: Plot the Time-Domain Signal
