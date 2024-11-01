@@ -1,6 +1,6 @@
 # Sonett18
 
-Se complet/sonett18.wav
+Se complete/sonett18.wav
 
 ```
 $ python text_to_sound.py
