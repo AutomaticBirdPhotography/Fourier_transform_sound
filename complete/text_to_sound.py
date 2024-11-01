@@ -134,27 +134,6 @@ if __name__ == "__main__":
     if text == "":
         text = "hello"
 
-    text = """
-        Sonett 18
-        Skal jeg si du er lik en sommerdag?
-        Du har mer ynde og mer harmoni.
-        Hver maiknopp skakes bryskt av vindens jag,
-        og sommerens lånte tid er fort forbi.
-
-        For het iblant er himmeløyets glød,
-        og ofte blir dets gylne glans obskur.
-        Alt skjønt går fra det skjønne og mot død,
-        på grunn av skjebne eller streng natur.
-
-        Men alltid skal din sommer finnes her,
-        din skjønnhet skal bestå, du skal forbli,
-        og ikke gå hvor dødens skygge er:
-
-        Av diktet, evig, oppstår du i tid.
-        ___Så lenge menn kan ånde, øyne se,
-        ___har diktet liv. Og du får liv ved det.
-    """
-
     duration_input = input("Enter the duration of each character in seconds (defualt: 0.1): ")
     
     if duration_input == "":
