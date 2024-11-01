@@ -17,12 +17,15 @@ def plot_waveform(filename):
     time = np.linspace(0, duration, len(signal))
 
     # Plot waveform
-    plt.figure(figsize=(12, 4))
-    plt.plot(time, signal)
-    plt.title("Waveform")
+    plt.figure(figsize=(10, 6))
+    plt.style.use("ggplot")
+    plt.plot(time, signal, color="navy", linewidth=1.5, linestyle="-")
+    plt.fill_between(time, signal, color="skyblue", alpha=0.4)
+    plt.title("Audio Waveform")
     plt.xlabel("Time [s]")
     plt.ylabel("Amplitude")
-    plt.grid(True)
+    plt.tight_layout()
+    plt.grid(True, which="both", linestyle="--", linewidth=0.5, alpha=0.7)
     plt.show()
 
 
@@ -314,5 +317,5 @@ def visualize_audio(filename):
 
 
 # Usage example
-filename = "signal.wav"
+filename = "./complete/sonet18.wav"
 visualize_audio(filename)
